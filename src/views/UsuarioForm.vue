@@ -10,7 +10,7 @@
         </div>
       </div>
 
-      <div>
+      <div v-if="!isEdit">
         <label class="block text-sm">Email</label>
         <input v-model="form.email" type="email" class="w-full border rounded p-2" />
         <div v-if="errors.email" class="text-sm text-red-600 mt-1">
@@ -83,7 +83,7 @@ function clientValidate() {
   let ok = true
   errors.value = {}
   if (!form.value.nome) { errors.value.nome = ['Campo obrigatório.']; ok = false }
-  if (!form.value.email) { errors.value.email = ['Campo obrigatório.']; ok = false }
+  if (!isEdit && !form.value.email) { errors.value.email = ['Campo obrigatório.']; ok = false }
   if (!isEdit && !form.value.password) { errors.value.password = ['Campo obrigatório.']; ok = false }
   return ok
 }
@@ -94,7 +94,10 @@ async function save() {
   submitting.value = true
   try {
     if (isEdit) {
-      await axios.put(`/users/${id}`, form.value)
+      const payload = { ...form.value }
+      // remover campos que a API não espera no PUT (ex: email)
+      if ('email' in payload) delete payload.email
+      await axios.put(`/users/${id}`, payload)
     } else {
       await axios.post('/users/', form.value)
     }
