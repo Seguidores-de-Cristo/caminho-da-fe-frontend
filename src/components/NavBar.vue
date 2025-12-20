@@ -4,6 +4,7 @@
       <div class="text-lg font-bold">Caminho da Fé</div>
       <nav class="flex items-center gap-3">
         <router-link to="/novos-convertidos" class="text-sm">Novos Convertidos</router-link>
+        <router-link to="/usuarios" class="text-sm">Discipuladores</router-link>
         <button v-if="auth.isAuthenticated" @click="logout" class="text-sm text-red-600">Sair</button>
         <router-link v-else to="/login" class="text-sm text-blue-600">Login</router-link>
       </nav>

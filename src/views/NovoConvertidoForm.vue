@@ -76,8 +76,11 @@
       </div>
 
       <div>
-        <label class="block text-sm">Discipulador (ID) <span class="text-xs text-slate-500">(obrigatório)</span></label>
-        <input type="number" v-model.number="form.discipulador_id" class="w-full border rounded p-2" />
+        <label class="block text-sm">Discipulador <span class="text-xs text-slate-500">(obrigatório)</span></label>
+        <select v-model.number="form.discipulador_id" :disabled="loadingUsers" class="w-full border rounded p-2">
+          <option value="">Selecione o discipulador</option>
+          <option v-for="u in users" :key="u.id" :value="u.id">{{ u.nome }} — {{ u.email }}</option>
+        </select>
         <div v-if="errors.discipulador_id" class="text-sm text-red-600 mt-1">
           <div v-for="(m, i) in errors.discipulador_id" :key="i">{{ m }}</div>
         </div>
@@ -122,6 +125,8 @@ const form = ref<any>({
 const errors = ref<Record<string, string[]>>({})
 const generalError = ref<string | null>(null)
 const submitting = ref(false)
+const users = ref<Array<any>>([])
+const loadingUsers = ref(false)
 
 function mapDetailToField(loc: any[]): string {
   // loc can be like ["body", "field_name"] or similar; prefer last string
@@ -142,6 +147,19 @@ async function load() {
   if (!id) return
   const res = await axios.get(`/novos-convertidos/${id}`)
   Object.assign(form.value, res.data)
+}
+
+async function loadUsers() {
+  loadingUsers.value = true
+  try {
+    const res = await axios.get('/users/')
+    users.value = res.data || []
+  } catch (e) {
+    // não bloquear o formulário se falhar; mostrar erro geral
+    generalError.value = 'Não foi possível carregar lista de discipuladores.'
+  } finally {
+    loadingUsers.value = false
+  }
 }
 
 function clientValidate() {
@@ -197,4 +215,5 @@ async function save() {
 }
 
 onMounted(load)
+onMounted(loadUsers)
 </script>
