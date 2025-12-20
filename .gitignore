@@ -1,0 +1,47 @@
+# Node
+node_modules/
+
+# Production
+dist/
+build/
+
+# Local env files
+.env
+.env.*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# TypeScript
+*.tsbuildinfo
+
+# Vite cache
+.vite/
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Test output
+cypress/videos/
+cypress/screenshots/
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Misc
+.eslintcache
+.parcel-cache
+.cache/
