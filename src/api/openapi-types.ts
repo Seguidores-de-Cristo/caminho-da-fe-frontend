@@ -377,12 +377,12 @@ export interface components {
              * Format: date
              */
             data_contato: string;
-            /** Contact Event Id */
-            contact_event_id: string;
             /** Protocolo */
             protocolo: string;
             /** Hora Protocolo */
             hora_protocolo: string;
+            /** Status Contato */
+            status_contato: string;
         };
         /** ContatoNovoConvertidoOut */
         ContatoNovoConvertidoOut: {
@@ -397,12 +397,12 @@ export interface components {
              * Format: date
              */
             data_contato: string;
-            /** Contact Event Id */
-            contact_event_id: string;
             /** Protocolo */
             protocolo: string;
             /** Hora Protocolo */
             hora_protocolo: string;
+            /** Status Contato */
+            status_contato: string;
             /** Id */
             id: number;
         };
@@ -438,6 +438,28 @@ export interface components {
             especificacao_outros_resposta: string | null;
             /** Manter Contato */
             manter_contato: boolean;
+            /** Motivo Nao Manter Contato */
+            motivo_nao_manter_contato?: string | null;
+            /** Candidato Abandonou Discipulado */
+            candidato_abandonou_discipulado: boolean;
+            /** Motivo Abandono Discipulado */
+            motivo_abandono_discipulado?: string | null;
+            /** Agendar Proximo Contato Data */
+            agendar_proximo_contato_data?: string | null;
+            /** Agendar Proximo Contato Hora */
+            agendar_proximo_contato_hora?: string | null;
+            /** Candidato Preparado Batismo */
+            candidato_preparado_batismo: boolean;
+            /** Data Batismo */
+            data_batismo?: string | null;
+            /** Candidato Esta Em Duvidas Batismo */
+            candidato_esta_em_duvidas_batismo: boolean;
+            /** Motivo Duvidas Batismo */
+            motivo_duvidas_batismo?: string | null;
+            /** Candidato Desistiu Batismo */
+            candidato_desistiu_batismo: boolean;
+            /** Motivo Desistencia Batismo */
+            motivo_desistencia_batismo?: string | null;
         };
         /** ContatoNovosConvertidosAcoesOut */
         ContatoNovosConvertidosAcoesOut: {
@@ -471,6 +493,28 @@ export interface components {
             especificacao_outros_resposta: string | null;
             /** Manter Contato */
             manter_contato: boolean;
+            /** Motivo Nao Manter Contato */
+            motivo_nao_manter_contato?: string | null;
+            /** Candidato Abandonou Discipulado */
+            candidato_abandonou_discipulado: boolean;
+            /** Motivo Abandono Discipulado */
+            motivo_abandono_discipulado?: string | null;
+            /** Agendar Proximo Contato Data */
+            agendar_proximo_contato_data?: string | null;
+            /** Agendar Proximo Contato Hora */
+            agendar_proximo_contato_hora?: string | null;
+            /** Candidato Preparado Batismo */
+            candidato_preparado_batismo: boolean;
+            /** Data Batismo */
+            data_batismo?: string | null;
+            /** Candidato Esta Em Duvidas Batismo */
+            candidato_esta_em_duvidas_batismo: boolean;
+            /** Motivo Duvidas Batismo */
+            motivo_duvidas_batismo?: string | null;
+            /** Candidato Desistiu Batismo */
+            candidato_desistiu_batismo: boolean;
+            /** Motivo Desistencia Batismo */
+            motivo_desistencia_batismo?: string | null;
             /** Id */
             id: number;
         };
@@ -536,7 +580,7 @@ export interface components {
              */
             data_nascimento: string;
             /** Idade */
-            idade?: number | null;
+            idade: number | null;
             /**
              * Data Conversao
              * Format: date
@@ -616,6 +660,10 @@ export interface components {
         UserUpdate: {
             /** Nome */
             nome?: string | null;
+            /** Telefone */
+            telefone?: string | null;
+            /** Is Active */
+            is_active?: boolean | null;
         };
         /** ValidationError */
         ValidationError: {
