@@ -4,6 +4,7 @@ import NovoConvertidosList from '../views/NovoConvertidosList.vue'
 import NovoConvertidoForm from '../views/NovoConvertidoForm.vue'
 import UsuariosList from '../views/UsuariosList.vue'
 import UsuarioForm from '../views/UsuarioForm.vue'
+import UsuarioDeleteConfirm from '../views/UsuarioDeleteConfirm.vue'
 import ContatoNovoConvertidoList from '../views/ContatoNovoConvertidoList.vue'
 import ContatoNovoConvertidoForm from '../views/ContatoNovoConvertidoForm.vue'
 import AcoesContatoForm from '../views/AcoesContatoForm.vue'
@@ -16,6 +17,7 @@ const routes = [
   { path: '/usuarios', component: UsuariosList, meta: { requiresAuth: true } },
   { path: '/usuarios/new', component: UsuarioForm, meta: { requiresAuth: true } },
   { path: '/usuarios/:id/edit', component: UsuarioForm, meta: { requiresAuth: true } },
+  { path: '/usuarios/:id/delete', component: UsuarioDeleteConfirm, meta: { requiresAuth: true } },
   { path: '/novos-convertidos', component: NovoConvertidosList, meta: { requiresAuth: true } },
   { path: '/novos-convertidos/new', component: NovoConvertidoForm, meta: { requiresAuth: true } },
   { path: '/novos-convertidos/:id/edit', component: NovoConvertidoForm, meta: { requiresAuth: true } },

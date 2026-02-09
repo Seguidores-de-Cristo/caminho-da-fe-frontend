@@ -21,6 +21,8 @@
           <td class="p-2">{{ item.email }}</td>
           <td class="p-2">
             <router-link :to="`/usuarios/${item.id}/edit`" class="text-blue-600">Editar</router-link>
+            <span class="mx-2">|</span>
+            <router-link :to="`/usuarios/${item.id}/delete`" class="text-red-600">Excluir</router-link>
           </td>
         </tr>
       </tbody>
