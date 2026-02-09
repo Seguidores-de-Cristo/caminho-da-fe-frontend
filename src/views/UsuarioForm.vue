@@ -34,6 +34,26 @@
         </div>
       </div>
 
+      <div v-if="isEdit" class="space-y-2">
+        <label class="inline-flex items-center gap-2">
+          <input type="checkbox" v-model="changePassword" />
+          <span class="text-sm">Alterar senha</span>
+        </label>
+        <div v-if="changePassword">
+          <label class="block text-sm">Nova senha</label>
+          <input v-model="form.password" type="password" class="w-full border rounded p-2" />
+          <div v-if="errors.password" class="text-sm text-red-600 mt-1">
+            <div v-for="(m, i) in errors.password" :key="i">{{ m }}</div>
+          </div>
+
+          <label class="block text-sm mt-2">Confirme a nova senha</label>
+          <input v-model="passwordConfirm" type="password" class="w-full border rounded p-2" />
+          <div v-if="errors.password_confirm" class="text-sm text-red-600 mt-1">
+            <div v-for="(m, i) in errors.password_confirm" :key="i">{{ m }}</div>
+          </div>
+        </div>
+      </div>
+
       <div v-if="generalError" class="text-red-700">{{ generalError }}</div>
 
       <div class="text-right">
@@ -61,6 +81,8 @@ const form = ref<any>({ nome: '', email: '', telefone: '', password: '' })
 const errors = ref<Record<string, string[]>>({})
 const generalError = ref<string | null>(null)
 const submitting = ref(false)
+const changePassword = ref(false)
+const passwordConfirm = ref('')
 
 function mapDetailToField(loc: any[]): string {
   if (!Array.isArray(loc)) return 'non_field_errors'
@@ -85,6 +107,12 @@ function clientValidate() {
   if (!form.value.nome) { errors.value.nome = ['Campo obrigatório.']; ok = false }
   if (!isEdit && !form.value.email) { errors.value.email = ['Campo obrigatório.']; ok = false }
   if (!isEdit && !form.value.password) { errors.value.password = ['Campo obrigatório.']; ok = false }
+  if (isEdit && changePassword.value) {
+    if (!form.value.password) { errors.value.password = ['Campo obrigatório.']; ok = false }
+    if (form.value.password && form.value.password !== passwordConfirm.value) {
+      errors.value.password_confirm = ['As senhas não conferem.']; ok = false
+    }
+  }
   return ok
 }
 
@@ -92,11 +120,13 @@ async function save() {
   clearErrors()
   if (!clientValidate()) return
   submitting.value = true
-  try {
+    try {
     if (isEdit) {
       const payload = { ...form.value }
       // remover campos que a API não espera no PUT (ex: email)
       if ('email' in payload) delete payload.email
+      // se não for para alterar senha, remover campo password
+      if (!changePassword.value && 'password' in payload) delete payload.password
       await axios.put(`/users/${id}`, payload)
     } else {
       await axios.post('/users/', form.value)
