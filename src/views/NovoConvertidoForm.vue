@@ -20,7 +20,10 @@
 
       <div>
         <label class="block text-sm">CEP <span class="text-xs text-slate-500">(obrigatório)</span></label>
-        <input v-model="form.cep" class="w-full border rounded p-2" />
+        <div class="flex gap-2">
+          <input v-model="form.cep" @blur="fetchCep" class="w-full border rounded p-2" />
+          <button type="button" @click="fetchCep" class="px-3 py-1 bg-slate-200 rounded">Buscar CEP</button>
+        </div>
         <div v-if="errors.cep" class="text-sm text-red-600 mt-1">
           <div v-for="(m, i) in errors.cep" :key="i">{{ m }}</div>
         </div>
@@ -216,4 +219,24 @@ async function save() {
 
 onMounted(load)
 onMounted(loadUsers)
+
+async function fetchCep() {
+  const raw = form.value.cep || ''
+  const cep = String(raw).replace(/\D/g, '')
+  if (!cep) return
+  try {
+    const res = await axios.get(`/cep/${cep}`)
+    const data = res.data || {}
+    // mapear campos retornados (nomes defensivos)
+    if (data.endereco) form.value.endereco = data.endereco
+    if (data.cidade) form.value.cidade = data.cidade
+    if (data.bairro) form.value.bairro = data.bairro
+    if (data.uf) form.value.uf = data.uf
+    if (data.complemento) form.value.complemento = data.complemento
+  } catch (e) {
+    // não interromper o fluxo — apenas mostrar aviso breve
+    generalError.value = 'CEP não encontrado ou serviço indisponível.'
+    setTimeout(() => { generalError.value = null }, 3500)
+  }
+}
 </script>

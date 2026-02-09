@@ -378,11 +378,16 @@ export interface components {
              */
             data_contato: string;
             /** Protocolo */
-            protocolo: string;
+            protocolo?: string | null;
             /** Hora Protocolo */
-            hora_protocolo: string;
+            hora_protocolo?: string | null;
             /** Status Contato */
-            status_contato: string;
+            status_contato?: string | null;
+            /**
+             * Confirmar Contato
+             * @default false
+             */
+            confirmar_contato: boolean | null;
         };
         /** ContatoNovoConvertidoOut */
         ContatoNovoConvertidoOut: {
@@ -398,11 +403,11 @@ export interface components {
              */
             data_contato: string;
             /** Protocolo */
-            protocolo: string;
+            protocolo?: string | null;
             /** Hora Protocolo */
-            hora_protocolo: string;
+            hora_protocolo?: string | null;
             /** Status Contato */
-            status_contato: string;
+            status_contato?: string | null;
             /** Id */
             id: number;
         };

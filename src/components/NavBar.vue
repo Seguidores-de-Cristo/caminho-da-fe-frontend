@@ -5,7 +5,7 @@
       <nav class="flex items-center gap-3">
         <router-link to="/novos-convertidos" class="text-sm">Novos Convertidos</router-link>
         <router-link to="/usuarios" class="text-sm">Discipuladores</router-link>
-        <button v-if="auth.isAuthenticated" @click="logout" class="text-sm text-red-600">Sair</button>
+        <button v-if="auth.isAuthenticated" @click="goLogout" class="text-sm text-red-600">Sair</button>
         <router-link v-else to="/login" class="text-sm text-blue-600">Login</router-link>
       </nav>
     </div>
@@ -14,6 +14,8 @@
 
 <script setup lang="ts">
 import { useAuthStore } from '../stores/auth'
+import { useRouter } from 'vue-router'
 const auth = useAuthStore()
-function logout() { auth.logout() }
+const router = useRouter()
+function goLogout() { router.push('/logout') }
 </script>

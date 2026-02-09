@@ -60,7 +60,7 @@ O projeto possui um script para gerar as definições de tipo TypeScript a parti
 - [x] Tela de Login
 - [x] Lógica de autenticação (store/auth.ts)
 - [x] Proteção de rotas (router/index.ts)
-- [ ] Tela de Logout (atualmente só a lógica existe)
+- [x] Tela de Logout (implementada: view `src/views/Logout.vue`, rota `/logout` e NavBar conectados)
 - [ ] Tela de "Esqueci minha senha"
 
 ### Módulo de Discipuladores (Usuários)
@@ -70,15 +70,15 @@ O projeto possui um script para gerar as definições de tipo TypeScript a parti
 ### Módulo de Novos Convertidos
 - [x] Listagem de Novos Convertidos
 - [x] Formulário de Cadastro/Edição de Novo Convertido
-- [ ] Integração com API de CEP para preenchimento de endereço
+- [x] Integração com API de CEP para preenchimento de endereço
 - [ ] Visualização detalhada do perfil do convertido
 
 ### Módulo de Acompanhamento (Contatos)
-- [ ] Tela para visualizar os contatos realizados com um Novo Convertido
-- [ ] Formulário para registrar um novo contato
-- [ ] Formulário para registrar as ações de um contato (convites, etc.)
-- [ ] Visualização do histórico de acompanhamento
+- [x] Tela para visualizar os contatos realizados com um Novo Convertido
+- [x] Formulário para registrar um novo contato
+- [x] Formulário para registrar as ações de um contato (convites, etc.)
+- [ ] Visualização do histórico de acompanhamento (parcial)
 
 ### Relacionamentos
 - [ ] Tela para visualizar os convertidos de um discipulador específico
-- [ ] Funcionalidade para vincular/desvincular um convertido de um discipulador
+- [ ] Funcionalidade para vincular/desvincular um convertido de um discipulador (parcial — vinculação via formulário disponível; falta UI para desvincular)
