@@ -24,8 +24,11 @@ export const useAuthStore = defineStore('auth', {
       this.error = null
       try {
         const params = new URLSearchParams()
+        // OpenAPI expects OAuth-style fields; enviar grant_type e scope
+        params.append('grant_type', 'password')
         params.append('username', username)
         params.append('password', password)
+        params.append('scope', '')
         const res = await axios.post('/auth/token', params, {
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         })
