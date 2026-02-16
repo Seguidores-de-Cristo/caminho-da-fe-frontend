@@ -22,7 +22,9 @@
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import axios from '../../../api/client'
+import { useUsers } from '../../../composables/useUsers'
 import type { AxiosError } from 'axios'
+import { getOne, create, update } from '../api'
 
 const route = useRoute()
 const router = useRouter()
@@ -45,8 +47,7 @@ const form = ref<any>({
 const errors = ref<Record<string, string[]>>({})
 const generalError = ref<string | null>(null)
 const submitting = ref(false)
-const users = ref<Array<any>>([])
-const loadingUsers = ref(false)
+const { items: users, loading: loadingUsers, load: loadUsers } = useUsers()
 
 function mapDetailToField(loc: any[]): string {
   if (!Array.isArray(loc)) return 'non_field_errors'
@@ -61,21 +62,11 @@ function clearErrors() { errors.value = {}; generalError.value = null }
 
 async function load() {
   if (!id) return
-  const res = await axios.get(`/novos-convertidos/${id}`)
+  const res = await getOne(id)
   Object.assign(form.value, res.data)
 }
 
-async function loadUsers() {
-  loadingUsers.value = true
-  try {
-    const res = await axios.get('/users/')
-    users.value = res.data || []
-  } catch (e) {
-    generalError.value = 'Não foi possível carregar lista de discipuladores.'
-  } finally {
-    loadingUsers.value = false
-  }
-}
+// users loaded via composable
 
 function clientValidate() {
   const required = ['nome','telefone','cep','endereco','cidade','bairro','uf','data_nascimento','data_conversao','discipulador_id']
@@ -96,9 +87,9 @@ async function save() {
   submitting.value = true
   try {
     if (isEdit) {
-      await axios.put(`/novos-convertidos/${id}`, form.value)
+      await update(id as string, form.value)
     } else {
-      await axios.post('/novos-convertidos/', form.value)
+      await create(form.value)
     }
     router.push('/novos-convertidos')
   } catch (err) {

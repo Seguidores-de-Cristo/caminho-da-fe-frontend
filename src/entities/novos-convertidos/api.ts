@@ -1,4 +1,5 @@
 import axios from '../../api/client'
+import * as contatosUpstream from '../../api/contatos'
 
 export function list(params?: any) {
   return axios.get('/novos-convertidos/', { params })
@@ -20,4 +21,10 @@ export function inactivate(id: string | number) {
   return axios.put(`/novos-convertidos/${id}`, { is_active: false })
 }
 
-export default { list, getOne, create, update, inactivate }
+// Expose contatos (contatos de novos convertidos) CRUD via this model
+export const createContato = contatosUpstream.createContato
+export const listContatos = contatosUpstream.listContatos
+export const createAcao = contatosUpstream.createAcao
+export const listAcoesByContato = contatosUpstream.listAcoesByContato
+
+export default { list, getOne, create, update, inactivate, createContato, listContatos, createAcao, listAcoesByContato }

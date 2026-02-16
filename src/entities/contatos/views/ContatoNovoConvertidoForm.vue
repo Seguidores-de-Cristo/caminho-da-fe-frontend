@@ -63,10 +63,11 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import axios from '../../../api/client'
+import { listNovos } from '../../../composables/useNovosConvertidos'
+import { listUsers } from '../../../composables/useUsers'
+import { createContato } from '../../../composables/useContatos'
 import type { AxiosError } from 'axios'
 import { useRouter } from 'vue-router'
-import { createContato } from '../api'
 
 const router = useRouter()
 const form = ref<any>({ discipulador_id: null, novo_convertido_id: null, sucesso_contato: false, data_contato: '', protocolo: '', hora_protocolo: '', status_contato: '', confirmar_contato: false })
@@ -87,8 +88,8 @@ function mapDetailToField(loc: any[]): string {
 
 async function loadLists() {
   try {
-    const [u, n] = await Promise.all([axios.get('/users/'), axios.get('/novos-convertidos/')])
-    users.value = u.data || []
+    const [u, n] = await Promise.all([listUsers(), listNovos()])
+    users.value = u || []
     novos.value = n.data || []
   } catch (e) {
     generalError.value = 'Não foi possível carregar listas.'

@@ -42,17 +42,13 @@
 
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
-import axios from '../../../api/client'
+import { useUsers } from '../../../composables/useUsers'
 import { useAuthStore } from '../../../stores/auth'
 
-const items = ref<any[]>([])
-const loading = ref(false)
+const { items, loading, load: loadUsers } = useUsers()
 
 async function load() {
-  loading.value = true
-  const res = await axios.get('/users/')
-  items.value = res.data || []
-  loading.value = false
+  await loadUsers()
 }
 
 function decodeJwtPayload(token: string | null): any | null {

@@ -69,7 +69,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import axios from '../../../api/client'
+import { useUsers } from '../../../composables/useUsers'
 import type { AxiosError } from 'axios'
 
 const route = useRoute()
@@ -95,10 +95,12 @@ function mapDetailToField(loc: any[]): string {
 
 function clearErrors() { errors.value = {}; generalError.value = null }
 
+const { getUser, createUser, updateUser } = useUsers()
+
 async function load() {
   if (!id) return
-  const res = await axios.get(`/users/${id}`)
-  Object.assign(form.value, res.data)
+  const res = await getUser(id)
+  Object.assign(form.value, res)
 }
 
 function clientValidate() {
@@ -127,9 +129,9 @@ async function save() {
       if ('email' in payload) delete payload.email
       // se não for para alterar senha, remover campo password
       if (!changePassword.value && 'password' in payload) delete payload.password
-      await axios.put(`/users/${id}`, payload)
+      await updateUser(id as string, payload)
     } else {
-      await axios.post('/users/', form.value)
+      await createUser(form.value)
     }
     router.push('/usuarios')
   } catch (err) {

@@ -34,8 +34,9 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import axios from '../../../api/client'
-import { listContatos } from '../api'
+import { listContatos } from '../../../composables/useContatos'
+import { listNovos } from '../../../composables/useNovosConvertidos'
+import { listUsers } from '../../../composables/useUsers'
 
 const items = ref<any[]>([])
 const loading = ref(false)
@@ -47,11 +48,11 @@ async function load() {
   try {
     const [cRes, uRes, nRes] = await Promise.all([
       listContatos(),
-      axios.get('/users/'),
-      axios.get('/novos-convertidos/')
+      listUsers(),
+      listNovos()
     ])
     items.value = cRes.data || []
-    users.value = uRes.data || []
+    users.value = uRes || []
     novos.value = nRes.data || []
   } catch (e) {
     items.value = []

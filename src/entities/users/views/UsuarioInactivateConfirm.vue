@@ -23,7 +23,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import axios from '../../../api/client'
+import { useUsers } from '../../../composables/useUsers'
 import type { AxiosError } from 'axios'
 
 const route = useRoute()
@@ -35,11 +35,13 @@ const loading = ref(false)
 const submitting = ref(false)
 const generalError = ref<string | null>(null)
 
+const { getUser, inactivateUser } = useUsers()
+
 async function load() {
   loading.value = true
   try {
-    const res = await axios.get(`/users/${id}`)
-    Object.assign(item.value, res.data)
+    const res = await getUser(id)
+    Object.assign(item.value, res)
   } finally {
     loading.value = false
   }
@@ -48,9 +50,9 @@ async function load() {
 async function confirm() {
   generalError.value = null
   submitting.value = true
-  try {
+    try {
     // enviar PUT para desativar (is_active: false)
-    await axios.put(`/users/${id}`, { is_active: false })
+    await inactivateUser(id)
     router.push('/usuarios')
   } catch (err) {
     const e = err as AxiosError<any>

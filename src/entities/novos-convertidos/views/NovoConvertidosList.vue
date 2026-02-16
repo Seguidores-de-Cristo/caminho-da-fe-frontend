@@ -30,16 +30,12 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import axios from '../../../api/client'
+import { useNovosConvertidos } from '../../../composables/useNovosConvertidos'
 
-const items = ref<any[]>([])
-const loading = ref(false)
+const { items, loading, load: loadNovos } = useNovosConvertidos()
 
 async function load() {
-  loading.value = true
-  const res = await axios.get('/novos-convertidos')
-  items.value = res.data || []
-  loading.value = false
+  await loadNovos()
 }
 
 onMounted(load)

@@ -134,11 +134,6 @@
         </div>
       </div>
 
-      <div>
-        <label class="block text-sm">Manter Contato</label>
-        <input type="checkbox" v-model="form.manter_contato" />
-      </div>
-
       <div v-if="generalError" class="text-red-700">{{ generalError }}</div>
 
       <div class="text-right">
@@ -155,7 +150,7 @@
 import { ref, onMounted } from 'vue'
 import type { AxiosError } from 'axios'
 import { useRouter, useRoute } from 'vue-router'
-import { createAcao } from '../api'
+import { createAcao } from '../../../composables/useContatos'
 
 const router = useRouter()
 const route = useRoute()
