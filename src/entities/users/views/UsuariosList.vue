@@ -42,8 +42,8 @@
 
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
-import axios from '../api/client'
-import { useAuthStore } from '../stores/auth'
+import axios from '../../../api/client'
+import { useAuthStore } from '../../../stores/auth'
 
 const items = ref<any[]>([])
 const loading = ref(false)
@@ -58,11 +58,9 @@ async function load() {
 function decodeJwtPayload(token: string | null): any | null {
   if (!token) return null
   try {
-    // remover prefixo 'Bearer ' caso exista
     if (typeof token === 'string' && token.startsWith('Bearer ')) token = token.split(' ')[1]
     const parts = token.split('.')
     if (parts.length < 2) return null
-    // corrigir padding base64 se necessário
     let b64 = parts[1].replace(/-/g, '+').replace(/_/g, '/')
     while (b64.length % 4 !== 0) b64 += '='
     const payload = JSON.parse(atob(b64))
@@ -80,7 +78,6 @@ const currentUserId = computed(() => {
 })
 const currentUserEmail = computed(() => {
   const p = decodeJwtPayload(auth.token)
-  // sub might be an email; prefer explicit email claims
   const email = p?.email ?? p?.user?.email ?? p?.sub
   return typeof email === 'string' ? email : null
 })

@@ -63,9 +63,10 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import axios from '../api/client'
+import axios from '../../../api/client'
 import type { AxiosError } from 'axios'
 import { useRouter } from 'vue-router'
+import { createContato } from '../api'
 
 const router = useRouter()
 const form = ref<any>({ discipulador_id: null, novo_convertido_id: null, sucesso_contato: false, data_contato: '', protocolo: '', hora_protocolo: '', status_contato: '', confirmar_contato: false })
@@ -97,14 +98,13 @@ async function loadLists() {
 async function save() {
   errors.value = {}
   generalError.value = null
-  // simples validação cliente
   if (!form.value.novo_convertido_id || !form.value.discipulador_id) {
     generalError.value = 'Preencha novo convertido e discipulador.'
     return
   }
   submitting.value = true
   try {
-    await axios.post('/contatos-novos-convertidos/', form.value)
+    await createContato(form.value)
     router.push('/contatos-novos-convertidos')
   } catch (err) {
     const e = err as AxiosError<any>

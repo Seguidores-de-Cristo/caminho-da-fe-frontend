@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import axios from '../api/client'
+import axios from '../../../api/client'
 
 const items = ref<any[]>([])
 const loading = ref(false)

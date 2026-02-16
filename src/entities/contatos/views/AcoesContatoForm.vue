@@ -155,11 +155,10 @@
 import { ref, onMounted } from 'vue'
 import type { AxiosError } from 'axios'
 import { useRouter, useRoute } from 'vue-router'
-import { createAcao } from '../api/contatos'
+import { createAcao } from '../api'
 
 const router = useRouter()
 const route = useRoute()
-// Campos base + opcionais do schema ContatoNovosConvertidosAcoesCreate
 const form = ref<any>({
   contato_novo_convertido_id: null,
   convite_culto_igreja: false,

@@ -4,8 +4,11 @@
       <div class="text-lg font-bold">Caminho da Fé</div>
       <nav class="flex items-center gap-3">
         <router-link to="/novos-convertidos" class="text-sm">Novos Convertidos</router-link>
+        <router-link to="/contatos-novos-convertidos" class="text-sm">Contatos</router-link>
         <router-link to="/usuarios" class="text-sm">Discipuladores</router-link>
-        <button v-if="auth.isAuthenticated" @click="goLogout" class="text-sm text-red-600">Sair</button>
+        <div v-if="auth.isAuthenticated" class="flex items-center gap-3">
+          <button @click="goLogout" class="text-sm text-red-600">Sair</button>
+        </div>
         <router-link v-else to="/login" class="text-sm text-blue-600">Login</router-link>
       </nav>
     </div>

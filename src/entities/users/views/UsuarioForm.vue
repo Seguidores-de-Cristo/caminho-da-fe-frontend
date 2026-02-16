@@ -69,7 +69,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import axios from '../api/client'
+import axios from '../../../api/client'
 import type { AxiosError } from 'axios'
 
 const route = useRoute()
