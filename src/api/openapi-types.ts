@@ -336,6 +336,150 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/escola-dominical/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Listar Escolas
+         * @description Lista todas as escolas dominicais.
+         */
+        get: operations["listar_escolas_escola_dominical__get"];
+        put?: never;
+        /**
+         * Criar Escola
+         * @description Cria uma nova escola dominical.
+         */
+        post: operations["criar_escola_escola_dominical__post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/escola-dominical/{escola_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Obter Escola
+         * @description Obtém uma escola dominical pelo ID.
+         */
+        get: operations["obter_escola_escola_dominical__escola_id__get"];
+        /**
+         * Atualizar Escola
+         * @description Atualiza uma escola dominical existente.
+         */
+        put: operations["atualizar_escola_escola_dominical__escola_id__put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/escola-dominical/membros/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Listar Membros
+         * @description Lista todos os membros da escola dominical.
+         */
+        get: operations["listar_membros_escola_dominical_membros__get"];
+        put?: never;
+        /**
+         * Criar Membro
+         * @description Cria um novo membro da escola dominical.
+         */
+        post: operations["criar_membro_escola_dominical_membros__post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/escola-dominical/membros/{membro_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Obter Membro
+         * @description Obtém um membro da escola dominical pelo ID.
+         */
+        get: operations["obter_membro_escola_dominical_membros__membro_id__get"];
+        /**
+         * Atualizar Membro
+         * @description Atualiza um membro da escola dominical existente.
+         */
+        put: operations["atualizar_membro_escola_dominical_membros__membro_id__put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/escola-dominical/membros-vinculo/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Listar Membros
+         * @description Lista todos os vínculos de membros.
+         */
+        get: operations["listar_membros_escola_dominical_membros_vinculo__get"];
+        put?: never;
+        /**
+         * Criar Membro
+         * @description Cria um novo vínculo de membro.
+         */
+        post: operations["criar_membro_escola_dominical_membros_vinculo__post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/escola-dominical/membros-vinculo/{membro_vinculo_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Obter Membro Vinculo
+         * @description Obtém um vínculo de membro pelo ID.
+         */
+        get: operations["obter_membro_vinculo_escola_dominical_membros_vinculo__membro_vinculo_id__get"];
+        /**
+         * Atualizar Membro Vinculo
+         * @description Atualiza um vínculo de membro existente.
+         */
+        put: operations["atualizar_membro_vinculo_escola_dominical_membros_vinculo__membro_vinculo_id__put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -523,10 +667,235 @@ export interface components {
             /** Id */
             id: number;
         };
+        /** EscolaCreate */
+        EscolaCreate: {
+            /** Cnpj */
+            cnpj: string;
+            /** Razao Social */
+            razao_social: string;
+            /** Nome Fantasia */
+            nome_fantasia: string;
+            /** Telefone */
+            telefone?: string | null;
+            /**
+             * Email
+             * Format: email
+             */
+            email: string;
+            /** Cep */
+            cep: string;
+            /** Logradouro */
+            logradouro: string;
+            /** Numero */
+            numero: string;
+            /** Complemento */
+            complemento?: string | null;
+            /** Bairro */
+            bairro: string;
+            /** Cidade */
+            cidade: string;
+            /** Uf */
+            uf: string;
+        };
+        /** EscolaOut */
+        EscolaOut: {
+            /** Cnpj */
+            cnpj: string;
+            /** Razao Social */
+            razao_social: string;
+            /** Nome Fantasia */
+            nome_fantasia: string;
+            /** Telefone */
+            telefone?: string | null;
+            /**
+             * Email
+             * Format: email
+             */
+            email: string;
+            /** Cep */
+            cep: string;
+            /** Logradouro */
+            logradouro: string;
+            /** Numero */
+            numero: string;
+            /** Complemento */
+            complemento?: string | null;
+            /** Bairro */
+            bairro: string;
+            /** Cidade */
+            cidade: string;
+            /** Uf */
+            uf: string;
+            /** Id */
+            id: number;
+            /** Ativa */
+            ativa: boolean;
+        };
+        /** EscolaUpdate */
+        EscolaUpdate: {
+            /** Cnpj */
+            cnpj?: string | null;
+            /** Razao Social */
+            razao_social?: string | null;
+            /** Nome Fantasia */
+            nome_fantasia?: string | null;
+            /** Telefone */
+            telefone?: string | null;
+            /** Email */
+            email?: string | null;
+            /** Cep */
+            cep?: string | null;
+            /** Logradouro */
+            logradouro?: string | null;
+            /** Numero */
+            numero?: string | null;
+            /** Complemento */
+            complemento?: string | null;
+            /** Bairro */
+            bairro?: string | null;
+            /** Cidade */
+            cidade?: string | null;
+            /** Uf */
+            uf?: string | null;
+            /** Ativa */
+            ativa?: boolean | null;
+        };
         /** HTTPValidationError */
         HTTPValidationError: {
             /** Detail */
             detail?: components["schemas"]["ValidationError"][];
+        };
+        /** MembroCreate */
+        MembroCreate: {
+            /** Nome */
+            nome: string;
+            /** Telefone */
+            telefone?: string | null;
+            /**
+             * Email
+             * Format: email
+             */
+            email: string;
+            /** Data Nascimento */
+            data_nascimento?: string | null;
+            /** Sexo */
+            sexo: string;
+            /** Estado Civil */
+            estado_civil?: string | null;
+            /** Cpf */
+            cpf?: string | null;
+            /** Rg */
+            rg?: string | null;
+            /** Uf */
+            uf?: string | null;
+            /** Cidade */
+            cidade?: string | null;
+            /** Bairro */
+            bairro?: string | null;
+            /** Logradouro */
+            logradouro?: string | null;
+            /** Numero */
+            numero?: string | null;
+            /** Complemento */
+            complemento?: string | null;
+            /**
+             * Vinculos
+             * @default []
+             */
+            vinculos: components["schemas"]["MembroVinculoCreate"][];
+        };
+        /** MembroOut */
+        MembroOut: {
+            /** Nome */
+            nome: string;
+            /** Telefone */
+            telefone?: string | null;
+            /**
+             * Email
+             * Format: email
+             */
+            email: string;
+            /** Data Nascimento */
+            data_nascimento?: string | null;
+            /** Sexo */
+            sexo: string;
+            /** Estado Civil */
+            estado_civil?: string | null;
+            /** Cpf */
+            cpf?: string | null;
+            /** Rg */
+            rg?: string | null;
+            /** Uf */
+            uf?: string | null;
+            /** Cidade */
+            cidade?: string | null;
+            /** Bairro */
+            bairro?: string | null;
+            /** Logradouro */
+            logradouro?: string | null;
+            /** Numero */
+            numero?: string | null;
+            /** Complemento */
+            complemento?: string | null;
+            /** Id */
+            id: number;
+            /** Ativo */
+            ativo: boolean;
+        };
+        /** MembroUpdate */
+        MembroUpdate: {
+            /** Nome */
+            nome?: string | null;
+            /** Telefone */
+            telefone?: string | null;
+            /** Email */
+            email?: string | null;
+            /** Data Nascimento */
+            data_nascimento?: string | null;
+            /** Sexo */
+            sexo?: string | null;
+            /** Estado Civil */
+            estado_civil?: string | null;
+            /** Cpf */
+            cpf?: string | null;
+            /** Rg */
+            rg?: string | null;
+            /** Uf */
+            uf?: string | null;
+            /** Cidade */
+            cidade?: string | null;
+            /** Bairro */
+            bairro?: string | null;
+            /** Logradouro */
+            logradouro?: string | null;
+            /** Numero */
+            numero?: string | null;
+            /** Complemento */
+            complemento?: string | null;
+        };
+        /** MembroVinculoCreate */
+        MembroVinculoCreate: {
+            /** Id Escola */
+            id_escola: number;
+            /** Papel */
+            papel: string;
+        };
+        /** MembroVinculoOut */
+        MembroVinculoOut: {
+            /** Id Escola */
+            id_escola: number;
+            /** Papel */
+            papel: string;
+            /** Id Vinculo */
+            id_vinculo: number;
+            /** Id Membro */
+            id_membro: number;
+        };
+        /** MembroVinculoUpdate */
+        MembroVinculoUpdate: {
+            /** Id Escola */
+            id_escola?: number | null;
+            papel?: components["schemas"]["Papel"] | null;
         };
         /** NovoConvertidoCreate */
         NovoConvertidoCreate: {
@@ -631,6 +1000,11 @@ export interface components {
             /** Discipulador Id */
             discipulador_id?: number | null;
         };
+        /**
+         * Papel
+         * @enum {string}
+         */
+        Papel: "aluno" | "professor" | "funcionario" | "diretor" | "coordenador" | "superintendente";
         /** UserCreate */
         UserCreate: {
             /** Nome */
@@ -1381,6 +1755,399 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ContatoNovosConvertidosAcoesOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    listar_escolas_escola_dominical__get: {
+        parameters: {
+            query?: {
+                skip?: number;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EscolaOut"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    criar_escola_escola_dominical__post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EscolaCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EscolaOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    obter_escola_escola_dominical__escola_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                escola_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EscolaOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    atualizar_escola_escola_dominical__escola_id__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                escola_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EscolaUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EscolaOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    listar_membros_escola_dominical_membros__get: {
+        parameters: {
+            query?: {
+                skip?: number;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MembroOut"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    criar_membro_escola_dominical_membros__post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MembroCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MembroOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    obter_membro_escola_dominical_membros__membro_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                membro_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MembroOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    atualizar_membro_escola_dominical_membros__membro_id__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                membro_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MembroUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MembroOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    listar_membros_escola_dominical_membros_vinculo__get: {
+        parameters: {
+            query?: {
+                skip?: number;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MembroVinculoOut"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    criar_membro_escola_dominical_membros_vinculo__post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MembroVinculoCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MembroVinculoOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    obter_membro_vinculo_escola_dominical_membros_vinculo__membro_vinculo_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                membro_vinculo_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MembroVinculoOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    atualizar_membro_vinculo_escola_dominical_membros_vinculo__membro_vinculo_id__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                membro_vinculo_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MembroVinculoUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MembroVinculoOut"];
                 };
             };
             /** @description Validation Error */

@@ -228,7 +228,7 @@ async function fetchCep() {
     const res = await axios.get(`/cep/${cep}`)
     const data = res.data || {}
     // mapear campos retornados (nomes defensivos)
-    if (data.endereco) form.value.endereco = data.endereco
+    if (data.logradouro) form.value.endereco = data.logradouro
     if (data.cidade) form.value.cidade = data.cidade
     if (data.bairro) form.value.bairro = data.bairro
     if (data.uf) form.value.uf = data.uf
